@@ -34,7 +34,7 @@ struct CalendarTodoItemCellView: View {
                     Text(todoItem.title)
                         .font(.system(size: 20, weight: .semibold))
                     Spacer()
-                    Label("\(todoItem.dueDate.format("hh:mm a"))", systemImage: "clock")
+                    Label("\(todoItem.dueDate.format("HH:mm"))", systemImage: "clock")
                         .font(.callout)
                 }
                 .hSpacing(.leading)
@@ -46,6 +46,11 @@ struct CalendarTodoItemCellView: View {
             .padding()
             .background(TodoUtil().determineRowColor(todo: todoItem))
             .clipShape(.rect(cornerRadius: 20))
+            .onTapGesture {
+                withAnimation(.snappy) {
+                    todoItem.toggle()
+                }
+            }
         }
         .padding(.horizontal)
     }
