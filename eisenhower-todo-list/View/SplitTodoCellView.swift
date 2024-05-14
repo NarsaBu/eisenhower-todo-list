@@ -14,10 +14,14 @@ struct SplitTodoCellView: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(todoItem.title)
+                    .font(.system(size: 15))
                 Spacer()
                 Image(systemName: todoItem.isCompleted ? "checkmark" : "square")
                     .foregroundColor(.blue)
             }
+            todoItem.dueDate == DateUtil().createTheLatestDate() ? nil : Text(todoItem.dueDate.formatted())
+                .italic()
+                .font(.system(size: 15))
         }
     }
 }
